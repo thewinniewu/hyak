@@ -1,6 +1,6 @@
 <?php
 
-define ('__ROOT__', dirname(__FILE__));
+define ('__ROOT__', dirname(dirname(__FILE__)));
 require_once(__ROOT__.'/includes/lib/php-snapchat/src/snapchat.php');
 
 $snapchat = new Snapchat('harvardyak', 'h@rv@rdy4k!');
@@ -16,6 +16,8 @@ foreach($added_friends as $added_friend) {
 }
 
 foreach ($snaps as $snap) {
+   var_dump($snap); 
+
     $typearray = array(
         Snapchat::MEDIA_VIDEO => '.mov',
         Snapchat::MEDIA_IMAGE => '.jpg'
@@ -32,7 +34,7 @@ foreach ($snaps as $snap) {
     file_put_contents($filename, $data); 
 
     // mark snap as viewed
-    $snapchat->markSnapViewed($snap->id);
+    //$snapchat->markSnapViewed($snap->id);
 
     //  upload as snap
     $id = $snapchat->upload(
@@ -47,7 +49,7 @@ foreach ($snaps as $snap) {
      $snapchat->setStory($id, $snap->media_type);
 
     // for terminal testing
-    //echo "done";
+    echo "done";
 }
 
 // destroy evidence
