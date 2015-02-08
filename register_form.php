@@ -30,7 +30,7 @@ echo ('<!DOCTYPE HTML>
 	<body>
 
 		<!-- Intro -->
-			<section id="intro" class="main style3 dark fullscreen">
+			<section id="one" class="main style3 dark fullscreen">
 				<div class="content container 75%">
 					<header>
 						<h2>Thanks for registering!</h2>
