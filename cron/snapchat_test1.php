@@ -23,17 +23,19 @@ foreach ($snapgroups as $snapgroup) {
 
     $snapchat->updatePrivacy(Snapchat::PRIVACY_FRIENDS);
 
-    $snaps = $snapchat->getSnaps();
-
     $added_friends = $snapchat->getAddedFriends();
 
     foreach($added_friends as $added_friend) {
         $snapchat->addFriend($added_friend->name);
     }
 
+    $snaps = $snapchat->getSnaps();
+    
     foreach ($snaps as $snap) {
+      /*  
+       echo "<br/>";
        var_dump($snap); 
-
+        */
         $typearray = array(
             Snapchat::MEDIA_VIDEO => '.mov',
             Snapchat::MEDIA_IMAGE => '.jpg'
@@ -70,4 +72,6 @@ foreach ($snapgroups as $snapgroup) {
 
     // destroy evidence
     $snapchat->clearFeed();
+    echo "<br/>". $snapgroup["name"] . " refresh complete";
 }
+echo "<br/>all groups refreshed";
