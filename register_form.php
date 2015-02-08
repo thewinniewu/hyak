@@ -43,7 +43,7 @@ echo "<!DOCTYPE HTML>
 			</section>
 			
 	</body>
-</html>"
+</html>";
 
 
 ?>
