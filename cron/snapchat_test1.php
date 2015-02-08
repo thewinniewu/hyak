@@ -3,7 +3,7 @@
 define ('__ROOT__', dirname(dirname(__FILE__)));
 require_once(__ROOT__.'/includes/lib/php-snapchat/src/snapchat.php');
 
-bool set_time_limit (0);
+set_time_limit (0);
 
 // usernames and passwords
 // should be replaced with db eventually
