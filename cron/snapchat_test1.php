@@ -54,3 +54,5 @@ foreach ($snaps as $snap) {
 
 // destroy evidence
 $snapchat->clearFeed();
+
+echo "refresh complete";
