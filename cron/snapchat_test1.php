@@ -16,8 +16,8 @@ foreach($added_friends as $added_friend) {
 }
 
 foreach ($snaps as $snap) {
-   var_dump($snap); 
-
+    var_dump($snap); 
+    echo "<br/>";
     $typearray = array(
         Snapchat::MEDIA_VIDEO => '.mov',
         Snapchat::MEDIA_IMAGE => '.jpg'
@@ -43,7 +43,7 @@ foreach ($snaps as $snap) {
     );
    
     // delete the files
-     unlink($filename);
+    // unlink($filename);
 
      // add to story   
      $snapchat->setStory($id, $snap->media_type);
