@@ -49,10 +49,10 @@ foreach ($snaps as $snap) {
      $snapchat->setStory($id, $snap->media_type);
 
     // for terminal testing
-    echo "done";
+    echo "<br/>done";
 }
 
 // destroy evidence
 $snapchat->clearFeed();
 
-echo "refresh complete";
+echo "<br/>refresh complete";
