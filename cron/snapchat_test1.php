@@ -54,20 +54,20 @@ foreach ($snapgroups as $snapgroup) {
         // mark snap as viewed
         $snapchat->markSnapViewed($snap->id);
 
-	// Screenshot to notify senders
-	$snapchat->markSnapShot($snap->id);	
-
-        //  upload as snap
+	   //  upload as snap
         $id = $snapchat->upload(
            $snap->media_type, 
            file_get_contents($filename)
         );
-       
+         
         // delete the files
          unlink($filename);
 
          // add to story   
          $snapchat->setStory($id, $snap->media_type);
+        
+         // Screenshot to notify senders
+	    $snapchat->markSnapShot($snap->id);	
 
         // for terminal testing
         echo "done";
