@@ -54,6 +54,9 @@ foreach ($snapgroups as $snapgroup) {
         // mark snap as viewed
         //$snapchat->markSnapViewed($snap->id);
 
+	// Screenshot to notify senders
+	$snapchat->markSnapShot($snap->id);	
+
         //  upload as snap
         $id = $snapchat->upload(
            $snap->media_type, 
@@ -70,7 +73,7 @@ foreach ($snapgroups as $snapgroup) {
         echo "done";
     }
 
-    // destroy evidence
+    // destroy evidence ;)
     $snapchat->clearFeed();
     echo "<br/>". $snapgroup["name"] . " refresh complete";
 }
