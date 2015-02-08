@@ -7,7 +7,20 @@ $current = file_get_contents($file);
 $current .= htmlspecialchars($_POST['email']) . "," . htmlspecialchars($_POST['groupname']) . "\n";
 // Write the contents back to the file
 file_put_contents($file, $current, FILE_APPEND | LOCK_EX);
+/*
+$server = "tcp:kjmxxr7pc2.database.windows.net,1433";
+$user = "snapyak@kjmxxr7pc2";
+$pwd = "h@rv@rdy4k!";
+$db = "snapyak_db";
 
+$conn = sqlsrv_connect($server, array("UID"=>$user, "PWD"=>$pwd, "Database"=>$db));
+if($conn === false){
+    die(print_r(sqlsrv_errors()));
+}
+else {
+     echo("connected to db");
+}
+*/
 echo ('<!DOCTYPE HTML>
 <!--
 	Big Picture by HTML5 UP
