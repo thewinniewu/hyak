@@ -1,7 +1,5 @@
 <?php
-
-
-echo "<!DOCTYPE HTML>
+echo ('<!DOCTYPE HTML>
 <!--
 	Big Picture by HTML5 UP
 	html5up.net | @n33co
@@ -43,7 +41,5 @@ echo "<!DOCTYPE HTML>
 			</section>
 			
 	</body>
-</html>";
-
-
+</html>');
 ?>
