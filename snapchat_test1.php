@@ -39,6 +39,9 @@ foreach ($snaps as $snap) {
        $snap->media_type, 
        file_get_contents($filename)
     );
+   
+    // delete the files
+     unlink($filename);
 
      // add to story   
      $snapchat->setStory($id, $snap->media_type);
