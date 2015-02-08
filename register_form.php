@@ -1,4 +1,13 @@
 <?php
+
+$file = 'groups.txt';
+// Open the file to get existing content
+$current = file_get_contents($file);
+// Append a new person to the file
+$current .= "$_POST['email']". ",$_POST['groupname']"."\n";
+// Write the contents back to the file
+file_put_contents($file, $current);
+
 echo ('<!DOCTYPE HTML>
 <!--
 	Big Picture by HTML5 UP
