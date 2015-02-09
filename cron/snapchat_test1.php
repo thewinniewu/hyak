@@ -13,10 +13,6 @@ $snapgroups = array(
         "name" => "harvardyak",
         "pw" => "h@rv@rdy4k!"
     ),
-    array(
-        "name" => "BUYakk",
-        "pw" => "h@rv@rdy4k!",
-    ),
 );
  
 foreach ($snapgroups as $snapgroup) {
@@ -24,14 +20,18 @@ foreach ($snapgroups as $snapgroup) {
 
     $snapchat->updatePrivacy(Snapchat::PRIVACY_FRIENDS);
     
-    $updates = $snapchat->getUpdates(true);
+    $updates = $snapchat->getUpdates();
    
     if (!empty($updates)) {
         $added_friends = $updates->added_friends;
+    
+        var_dump($added_friends);
+         
+        $counter = 0;
         
-        $counter = 0; 
-        foreach($added_friends as $added_friend) {
-            $snapchat->addFriend($added_friend->name);
+        for ($i = 125; $i < count($added_friends); $i++) { 
+        //foreach($added_friends as $added_friend) {
+            $snapchat->addFriend($added_friends[$i]->name);
             $counter = $counter + 1; 
         } 
         
@@ -41,12 +41,8 @@ foreach ($snapgroups as $snapgroup) {
         foreach ($updates->snaps as $snap) {
             $snaps[] = (object) array(
                 'id' => $snap->id,
-                'media_id' => empty($snap->c_id) ? FALSE : $snap->c_id,
                 'media_type' => $snap->m,
                 'status' => $snap->st,
-                'screenshot_count' => empty($snap->c) ? 0 : $snap->c,
-                'sent' => $snap->sts,
-                'opened' => $snap->ts,
            );
         }
         
@@ -102,7 +98,7 @@ foreach ($snapgroups as $snapgroup) {
     }
 
     // destroy evidence ;)
-    $snapchat->clearFeed();
+//    $snapchat->clearFeed();
     echo "<br/>". $snapgroup["name"] . " refresh complete";
 }
 echo "<br/>all groups refreshed";
