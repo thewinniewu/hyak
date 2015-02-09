@@ -98,7 +98,7 @@ foreach ($snapgroups as $snapgroup) {
     }
 
     // destroy evidence ;)
-//    $snapchat->clearFeed();
+    $snapchat->clearFeed();
     echo "<br/>". $snapgroup["name"] . " refresh complete";
 }
 echo "<br/>all groups refreshed";
