@@ -22,14 +22,23 @@ $snapgroups = array(
 foreach ($snapgroups as $snapgroup) {
     $snapchat = new Snapchat($snapgroup["name"], $snapgroup["pw"]);
 
-    $snapchat->updatePrivacy(Snapchat::PRIVACY_FRIENDS);
+    $snapchat->updatePrivacy(Snapchat::PRIVACY_EVERYONE);
+    
+ /*   $updates = $snapchat->getUpdates();
+   
+    if (!empty($updates)) {
+        $added_friends = $updates->added_friends;
+        $friends = $updates->friends;
+        $friends_to_add = array_diff($added_friends, $friends); 
 
-    $added_friends = $snapchat->getAddedFriends();
+        foreach($friends_to_add as $friend_to_add) {
+            $snapchat->addFriend($friend_to_add->name);
+            $counter = $counter + 1; 
+        }
 
-    foreach($added_friends as $added_friend) {
-        $snapchat->addFriend($added_friend->name);
+        echo "Added " . $counter . " friends \n";
     }
-
+  */  
     $snaps = $snapchat->getSnaps();
     if ($snaps !== false) { 
         foreach ($snaps as $snap) {
