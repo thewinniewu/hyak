@@ -14,8 +14,8 @@ $snapgroups = array(
         "pw" => "h@rv@rdy4k!"
     ),
     array(
-        "name" => "hackatbrown",
-        "pw" => "h@ckatbr0wn",
+        "name" => "BUYakk",
+        "pw" => "h@rv@rdy4k!",
     ),
 );
  
