@@ -22,71 +22,82 @@ $snapgroups = array(
 foreach ($snapgroups as $snapgroup) {
     $snapchat = new Snapchat($snapgroup["name"], $snapgroup["pw"]);
 
-    $snapchat->updatePrivacy(Snapchat::PRIVACY_EVERYONE);
+    $snapchat->updatePrivacy(Snapchat::PRIVACY_FRIENDS);
     
- /*   $updates = $snapchat->getUpdates();
+    $updates = $snapchat->getUpdates(true);
    
     if (!empty($updates)) {
         $added_friends = $updates->added_friends;
-        $friends = $updates->friends;
-        $friends_to_add = array_diff($added_friends, $friends); 
-
-        foreach($friends_to_add as $friend_to_add) {
-            $snapchat->addFriend($friend_to_add->name);
+        
+        $counter = 0; 
+        foreach($added_friends as $added_friend) {
+            $snapchat->addFriend($added_friend->name);
             $counter = $counter + 1; 
-        }
-
+        } 
+        
         echo "Added " . $counter . " friends \n";
-    }
-  */  
-    $snaps = $snapchat->getSnaps();
-    if ($snaps !== false) { 
-        foreach ($snaps as $snap) {
-          
-            if ($snap->status == Snapchat::STATUS_OPENED 
-                || $snap->status == Snapchat::STATUS_SCREENSHOT) {
-                continue;
-            } 
-            /*  
-           echo "<br/>";
-           var_dump($snap); 
-            */
-            $typearray = array(
-                Snapchat::MEDIA_VIDEO => '.mov',
-                Snapchat::MEDIA_IMAGE => '.jpg'
-            ); 
-            
-            // download the data
-            $data = $snapchat->getMedia($snap->id);
+    
+        $snaps = array(); 
+        foreach ($updates->snaps as $snap) {
+            $snaps[] = (object) array(
+                'id' => $snap->id,
+                'media_id' => empty($snap->c_id) ? FALSE : $snap->c_id,
+                'media_type' => $snap->m,
+                'status' => $snap->st,
+                'screenshot_count' => empty($snap->c) ? 0 : $snap->c,
+                'sent' => $snap->sts,
+                'opened' => $snap->ts,
+           );
+        }
+        
+        if ($snaps !== false) { 
+            foreach ($snaps as $snap) {
+              
+                if ($snap->status == Snapchat::STATUS_OPENED 
+                    || $snap->status == Snapchat::STATUS_SCREENSHOT) {
+                    continue;
+                } 
+                /*  
+               echo "<br/>";
+               var_dump($snap); 
+                */
+                $typearray = array(
+                    Snapchat::MEDIA_VIDEO => '.mov',
+                    Snapchat::MEDIA_IMAGE => '.jpg'
+                ); 
+                
+                // download the data
+                $data = $snapchat->getMedia($snap->id);
+                     
+                $filename = __ROOT__ .
+                    '/includes/downloads/'.
+                    $snap->id.
+                    $typearray[$snap->media_type]; 
+                
+                file_put_contents($filename, $data); 
+
+                //  upload as snap
+                $id = $snapchat->upload(
+                   $snap->media_type, 
+                   file_get_contents($filename)
+                );
                  
-            $filename = __ROOT__ .
-                '/includes/downloads/'.
-                $snap->id.
-                $typearray[$snap->media_type]; 
-            
-            file_put_contents($filename, $data); 
+                // delete the files
+                 unlink($filename);
 
-            //  upload as snap
-            $id = $snapchat->upload(
-               $snap->media_type, 
-               file_get_contents($filename)
-            );
-             
-            // delete the files
-             unlink($filename);
-
-             // add to story   
-             $snapchat->setStory($id, $snap->media_type);
-            
-             // Screenshot to notify senders
-            $snapchat->markSnapShot($snap->id);	
-            
-             // mark snap as viewed
-            $snapchat->markSnapViewed($snap->id);
+                 // add to story   
+                 $snapchat->setStory($id, $snap->media_type);
+                
+                 // Screenshot to notify senders
+                $snapchat->markSnapShot($snap->id);	
+                
+                 // mark snap as viewed
+                $snapchat->markSnapViewed($snap->id);
 
 
-            // for terminal testing
-            echo "done";
+                // for terminal testing
+                echo "done";
+            }
         }
     }
 
