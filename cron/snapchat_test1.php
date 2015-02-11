@@ -85,7 +85,7 @@ foreach ($snapgroups as $snapgroup) {
                  $snapchat->setStory($id, $snap->media_type);
                 
                  // Screenshot to notify senders
-                $snapchat->markSnapShot($snap->id);	
+    //            $snapchat->markSnapShot($snap->id);	
                 
                  // mark snap as viewed
                 $snapchat->markSnapViewed($snap->id);
