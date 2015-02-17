@@ -13,6 +13,10 @@ $snapgroups = array(
         "name" => "harvardyak",
         "pw" => "h@rv@rdy4k!"
     ),
+    array(
+        "name" => "uclyak",
+        "pw" => "h@rv@rdy4k!"
+    ),
 );
  
 foreach ($snapgroups as $snapgroup) {
@@ -25,14 +29,24 @@ foreach ($snapgroups as $snapgroup) {
     if (!empty($updates)) {
         $added_friends = $updates->added_friends;
     
-        var_dump($added_friends);
+        //var_dump($added_friends);
          
         $counter = 0;
+
         
-        for ($i = 180; $i < count($added_friends); $i++) { 
-        //foreach($added_friends as $added_friend) {
-            $snapchat->addFriend($added_friends[$i]->name);
-            $counter = $counter + 1; 
+        if (strcasecmp($snapgroup["name"], "harvardyak") == 0) { 
+            for ($i = 180; $i < count($added_friends); $i++) { 
+            //foreach($added_friends as $added_friend) {
+                $snapchat->addFriend($added_friends[$i]->name);
+                $counter = $counter + 1; 
+            }
+        } else {
+            for ($i = 0; $i < count($added_friends); $i++) { 
+            //foreach($added_friends as $added_friend) {
+                $snapchat->addFriend($added_friends[$i]->name);
+                $counter = $counter + 1; 
+            }
+
         } 
         
         echo "Added " . $counter . " friends \n";
