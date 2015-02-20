@@ -44,6 +44,12 @@ foreach ($snapgroups as $snapgroup) {
                 $snapchat->addFriend($added_friends[$i]->name);
                 $counter = $counter + 1; 
             }
+        } else if (strcasecmp($snapgroup["name"], "ecaasu2015") == 0) { 
+            for ($i = 35; $i < count($added_friends); $i++) { 
+            //foreach($added_friends as $added_friend) {
+                $snapchat->addFriend($added_friends[$i]->name);
+                $counter = $counter + 1; 
+            }
         } else {
             for ($i = 0; $i < count($added_friends); $i++) { 
             //foreach($added_friends as $added_friend) {
