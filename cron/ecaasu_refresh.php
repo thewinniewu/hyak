@@ -30,26 +30,11 @@ foreach ($snapgroups as $snapgroup) {
         $counter = 0;
 
         
-    /*    if (strcasecmp($snapgroup["name"], "harvardyak") == 0) { 
-            for ($i = 180; $i < count($added_friends); $i++) { 
-            //foreach($added_friends as $added_friend) {
-                $snapchat->addFriend($added_friends[$i]->name);
-                $counter = $counter + 1; 
-            }
-            } else if (strcasecmp($snapgroup["name"], "ecaasu2015") == 0) {*/ 
-            for ($i = 38; $i < count($added_friends); $i++) { 
-                $snapchat->addFriend($added_friends[$i]->name);
-                $counter = $counter + 1; 
-            }
-       /* } else {
-            for ($i = 0; $i < count($added_friends); $i++) { 
-            //foreach($added_friends as $added_friend) {
-                $snapchat->addFriend($added_friends[$i]->name);
-                $counter = $counter + 1; 
-            }
-
-        } 
-        */        
+        for ($i = 58; $i < count($added_friends); $i++) { 
+            $snapchat->addFriend($added_friends[$i]->name);
+            $counter = $counter + 1; 
+        }
+        
         echo "Added " . $counter . " friends \n";
     
         $snaps = array(); 
