@@ -17,6 +17,10 @@ $snapgroups = array(
         "name" => "uclyak",
         "pw" => "h@rv@rdy4k!"
     ),
+    array(
+        "name" => "ecaasu2015",
+        "pw" => "h@rv@rdy4k!"
+    ),
 );
  
 foreach ($snapgroups as $snapgroup) {
