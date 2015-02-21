@@ -29,7 +29,7 @@ foreach ($snapgroups as $snapgroup) {
          
         $counter = 0;
 
-        for ($i = 75; 
+        for ($i = 90; 
             $i < count($added_friends); 
             $i++) { 
             $snapchat->addFriend($added_friends[$i]->name);
